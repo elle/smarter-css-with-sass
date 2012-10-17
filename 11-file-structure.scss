@@ -1,0 +1,81 @@
+// SASS FILE STRUCTURE AND RAILS INTEGRATION
+
+// OPTION 1: SASS ALONE
+// =================================================
+// - normalise.css [http://necolas.github.com/normalize.css/]
+// - assets files structure: underscore-prefixed files do not generate a .css file
+// - grid mixins and media queries
+
+
+
+
+// OPTION 2: SASS WITH BOURBON
+// =================================================
+// Gemfile
+gem "sass-rails"
+gem "bourbon"
+gem "neat"
+
+// app/assets/stylesheets/application.scss
+@import "bourbon/bourbon";
+@import "variables";
+@import "neat/neat";
+
+
+
+
+// OPTION 3: SASS WITH COMPASS
+// =================================================
+// Gemfile
+gem "sass-rails"
+gem "compass"
+
+// app/assets/stylesheets/application.scss
+@import "compass";
+
+// or for just the css3 goodness
+@import "compass/css3";
+
+
+
+
+// OPTION 4: SASS WITH BOOTSTRAP
+// =================================================
+// Gemfile
+gem "sass-rails"
+gem "bootstrap-sass"
+
+// app/assets/stylesheets/application.scss
+@import "bootstrap";
+
+
+
+
+
+// OPTION 5: GUI COMPILERS
+// =================================================
+// SASS:
+// - CodeKit [http://incident57.com/codekit/]
+// - LiveReload [http://livereload.com/]
+// - Compass.app [http://compass.handlino.com/]
+// - Scout [http://mhs.github.com/scout-app/]
+
+// Less:
+// - Less.app [http://incident57.com/less/]
+// - Crunch! [http://crunchapp.net/]
+// - SimpleLess [http://wearekiss.com/simpless]
+
+
+
+
+
+// SIDENOTE: BROWSER TOOLS
+// =================================================
+// Firefox: FireSass, a Firebug plugin
+// Ref: https://addons.mozilla.org/en-US/firefox/addon/firesass-for-firebug/
+
+// Chrome: SASS Inspector
+// Ref: https://chrome.google.com/webstore/detail/sass-inspector/lkofmbmllpgfbnonmnenkiakimpgoamn
+
+
+

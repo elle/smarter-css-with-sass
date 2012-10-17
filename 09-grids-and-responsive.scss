@@ -1,0 +1,96 @@
+// GRIDS, FRAMEWORKS AND RESPONSIVE LAYOUT
+// Most existing grid frameworks have a few problems:
+// - using non-semantic classes (i.e. span1, span2)
+// - rigid in the width and number of columns
+// - most still use 960px max-width (some exceptions: 1140css, Twitter Bootstrap...)
+
+// My practices with sass:
+// - grid functions or mixins
+// - responsive layout using selector queries
+
+
+// EXAMPLE 1:  SIMPLEST GRID FUNCTION
+// =================================================
+// Formula: width = (column width × span) + (gutter width × (span – 1))
+// Blueprint CSS framework: http://www.blueprintcss.org/
+$columns: 24;
+$grid-columns-width: 30px;
+$grid-gutter-width: 10px;
+
+@mixin span($columns, $margin-right: true) {
+  width: ($grid-columns-width * $columns) + ($grid-gutter-width * ($columns - 1));
+  float: left;
+  @if $margin_right {
+    margin-right: $grid-gutter-width; }
+  @else {
+    margin-right: 0;
+  }
+}
+
+.container { @include span(24, false); margin: 0 auto; }
+.main { @include span(11); }
+
+
+
+
+// EXAMPLE 2: RESPONSIVE GRID
+// =================================================
+// Sass’ support for basic math expressions help make it much easier to craft adaptive fluid-width layouts.
+// Ref: Responsive Web Design by Ethan Marcotte, http://www.abookapart.com/products/responsive-web-design
+// Ref: http://thesassway.com/advanced/pure-sass-functions
+// target / context = result
+
+@function calc-em($desired-size, $context) {
+  @return ($desired-size / $context) * 1em
+}
+
+// so for example if body font-size is 100%, which equates to 16px
+// and we want our target font-size to be 24px
+h1 { font-size: calc-em(24, 16); } // => 1.5em
+
+
+// or for example to get a flexible grid layout
+@function calc-percent($desired-size, $context) {
+  @return percentage($desired-size / $context)
+}
+
+.container { width: 90%; margin: 0 auto; } // => will center the .container in the browser window
+.main { width: calc-percent(900, 960); } // => 93.75%
+
+
+
+// EXAMPLE 3: Bourbon Neat
+// =================================================
+// Ref: http://thoughtbot.com/neat/
+// includes mixins for pad, shift, media queries breakpoints...
+
+// HTML Markup:
+<body>
+ <section class="blog">
+  <aside></aside>
+  <article></article>
+ </section>
+</body>
+
+// SASS:
+section.blog { @include outer-container;
+  aside { @include span-columns(4); }
+  article { @include span-columns(8); }
+}
+
+
+
+
+// EXAMPLE 4: 1140px CSS Grid System
+// =================================================
+// Ref: http://cssgrid.net/
+// Credit: Max Wheeler [@makenosound], IceLab [http://icelab.com.au/]
+// Flexi-grid addaption: https://gist.github.com/3889831
+
+$eleven40-grid-width: 4.85% !default;  // The width of a column
+$eleven40-grid-margin: 3.8% !default;  // The amount of margin between columns
+
+// Function to calculate width in context
+@function eleven40-span($columns, $parent: 12) {
+  @return ($eleven40-grid-width * $columns + $eleven40-grid-margin * ($columns - 1)) / ($eleven40-grid-width * $parent + $eleven40-grid-margin * ($parent - 1)) * 100%;
+}

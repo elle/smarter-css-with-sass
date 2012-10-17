@@ -1,0 +1,90 @@
+// MEDIA QUERIES IN SASS 3.2
+// Ref: http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+
+
+// EXAMPLE 1: VARIABLES IN QUERIES
+// =================================================
+$break-small: 320px;
+$break-large: 1200px;
+
+.profile-pic {
+  float: left;
+  width: 250px;
+
+  @media screen and (max-width: $break-small) {
+    width: 100px;
+    float: none;
+  }
+
+  @media screen and (min-width: $break-large) {
+    float: right;
+  }
+}
+
+// css output:
+profile-pic { float: left; width: 250px; }
+@media screen and (max-width: 320px) {
+  .profile-pic { width: 100px; float: none; }
+}
+@media screen and (min-width: 1200px) {
+  .profile-pic { float: right; }
+}
+
+
+
+
+// EXAMPLE 2: VARIABLES AS FULL QUERY
+// =================================================
+$information-phone: "only screen and (max-width : 320px)";
+
+@media #{$information-phone} {
+  background: red;
+}
+
+// css output:
+@media only screen and (max-width : 320px) {
+  background: red;
+}
+
+
+
+
+
+// EXAMPLE 3: ALLOWS BLOCKS AS MIXIN PARAMETERS
+// =================================================
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+.profile-pic {
+  float: left;
+  width: 250px;
+  @include respond-to(handhelds) { width: 100% ;}
+  @include respond-to(medium-screens) { width: 125px; }
+  @include respond-to(wide-screens) { float: none; }
+}
+
+// css output:
+.profile-pic { float: left; width: 250px; }
+@media only screen and (max-width: 320px) {
+  .profile-pic { width: 100%; }
+}
+@media only screen and (min-width: 321px) and (max-width: 1023px) {
+  .profile-pic { width: 125px; }
+}
+@media only screen and (min-width: 1024px) {
+  .profile-pic { float: none; }
+}
+
+

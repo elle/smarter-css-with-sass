@@ -1,0 +1,31 @@
+// CONTROL LOGIC
+
+// HTML
+<div class="pseudo-meter value-2">2</div>
+<div class="pseudo-meter value-1">1</div>
+<div class="pseudo-meter value-5">5</div>
+
+
+// SCSS
+.pseudo-meter {
+  display: block;
+  height: 20px;
+  text-indent: -9999px;
+  background-color: gray;
+  
+  @for $i from 0 through 10 {
+    &.value-#{$i} {
+      width: $i * 10%;
+      @if $i > 7 {
+        background-color: red;
+      }
+} }
+}
+
+// output css
+.pseudo-meter.value-0 { width: 0%; }
+.pseudo-meter.value-1 { width: 20%; }
+.pseudo-meter.value-2 { width: 40%; }
+.pseudo-meter.value-3 { width: 60%; }
+.pseudo-meter.value-4 { width: 80%; }
+.pseudo-meter.value-5 { width: 100%; }

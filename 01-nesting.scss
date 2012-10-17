@@ -1,0 +1,65 @@
+// NESTING
+
+// EXAMPLE 1: HELPS YOU GROUP STYLES TOGETHER (SIMILAR TO CLASS NAMESPACING)
+// ==========================================================================
+form.simple_form {
+  // everything within these curly brackets will be applied to elements within form with a class of simple_form
+}
+
+// Ruby HAML
+// %body{:class => "#{controller_name} #{action_name}"}
+
+body.users {
+  // everything will be applied to the users controller views
+}
+
+
+
+
+// EXAMPLE 2: ALLOWS YOU TO AVOID SELECTOR DUPLICATION
+// ==========================================================================
+// scss
+table {
+  tr:nth-child(2n) { background: #eceeea; }
+  th, td { padding: 10px;
+    p { color: #555; }
+  }
+}
+
+
+// css output
+table  tr:nth-child(2n) { background: #eceeea; }
+table th, table td { padding: 10px; }
+table th p { color: #555; }
+table td p { color: #555; }
+
+
+
+
+// EXAMPLE 3: USING THE PARENT SELECTOR (&) TO REFER BACK TO THE PARENT
+// ==========================================================================
+p { color: #000;
+  &.success { color: green; }
+  &.failure { color: red; }
+}
+
+// another example for a good & usage:
+a { color: #999; border-bottom: 1px dashed #ccc;
+  &:hover { text-decoration: none; }
+}
+
+
+// with modernizr and IE
+.menu-item {
+  display: inline-block;
+
+  .ltie8 & {
+    display: inline;
+    zoom: 1;
+  }
+}
+// css output
+.menu-item { display: inline-block; }
+.ltie8 .menu-item { display: inline ; zoom: 1; }
+
+

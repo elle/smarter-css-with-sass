@@ -1,0 +1,57 @@
+// VARIABLES
+// Sass allows you to store a value into a variable for later use (you can basically think of them as constants).
+// A variable is an identifier that starts with $.
+
+// EXAMPLE 1: FONTS
+// =================================================
+// Build a library of common font stacks
+// Check: http://www.sitepoint.com/eight-definitive-font-stacks/
+
+$font-serif: Constantia, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif",
+             "Liberation Serif", Georgia, "Times New Roman", serif;
+
+$font-sans: Frutiger, Univers, Calibri, "Myriad Pro", Myriad, "DejaVu Sans Condensed",
+            "Liberation Sans", HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            
+
+
+
+
+// EXAMPLE 2: COLOUR LIBRARY
+// =================================================
+// Build a library of common brand colors
+// Update base, changes cascade
+$body: #444;
+$bkg: #e1e1e1;
+$laugh_cyan: #57a2c2;
+$laugh_magenta: #e8188d;
+
+
+
+
+// EXAMPLE 3: FLASH MESSAGES COLOURS
+// =================================================
+// Use more semantic names for easy skinning
+$alert_bg: #fcf8e3;
+$alert_color: #c09853;
+$alert_border: #fbeed5;
+
+$success_bg: #dff0d8;
+$success_color: #468847;
+$success_border: #d6e9c6;
+
+$error_bg: #f2dede;
+$error_color: #b94a48;
+$error_border: #eed3d7;
+
+$info_bg: #D9EDF7;
+$info_color: #3A87AD;
+$info_border: #BCE8F1;
+
+
+
+// EXAMPLE 4: NUMBERS
+// =================================================
+$grid-columns:            12;
+$grid-column-width:       6.382978723%;
+$grid-gutter-width:       2.127659574%;

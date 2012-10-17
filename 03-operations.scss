@@ -1,0 +1,59 @@
+// FUNCTIONS AND OPERATIONS
+// Ref: http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html
+
+// EXAMPLE 1: MATH AND COLOUR OPERATIONS
+// =================================================
+$max-width: 18 * 36px + (17 * 10px);
+
+.container { width: $max-width; // 818px
+             color: #66EE99 + #666666; // #CFF
+           }
+
+
+
+// EXAMPLE 2: COLOUR FUNCTIONS
+// =================================================
+// Variables can be declared with other variables
+// Generate a colour palette by using the colour functions
+
+$main-color: #3352A1;
+$bold-color: saturate($main-color, 25%);
+$accent-color: adjust-hue($bold-color, 60deg); // same as complement($color)
+$main-gray-color: grayscale($main-color);
+$highlight-color: lighten($main-color, 20%);
+$shadow-color: transparentize(darken($main-color, 20%), 0.2);
+
+.main      { color: $main-color;      }
+.bold      { color: $bold-color;      }
+.accent    { color: $accent-color;    }
+.gray      { color: $main-gray-color; }
+.highlight { color: $highlight-color; }
+.shadow    { color: $shadow-color;    }
+
+
+
+// EXAMPLE 3: IF-ELSE WITH BROWSER SUPPORT
+// =================================================
+// show/hide for IE8
+
+@mixin transparency-setup($value) {
+  opacity: $value;
+
+  .ie8 & {
+    @if $value >= 0.5 {
+      display: block;
+    } @else {
+      display: none;
+    }
+  }
+}
+
+.hidden   { @include transparency-setup(0); }
+.visible  { @include transparency-setup(0.6); }
+
+// css output
+.hidden { opacity: 0; }
+.ie8 .hidden { display: none; }
+.visible {  opacity: 0.6; }
+.ie8 .visible { display: block; }
+

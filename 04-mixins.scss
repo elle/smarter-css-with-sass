@@ -1,0 +1,98 @@
+// MIXINS
+// Mixins enable us to create reusable snniptes of style rules. They do not return a variable value but output CSS.
+// Mixins are reusable sets of properties or rules that you include, or "mix," into other rules, by using the @include keyword
+// They are ideal for fixing the CSS3 vendor prefixes dilemma.
+// Mixins can also accept arguments, allowing us to isolate common styling patterns and reuse them.
+
+
+
+// EXAMPLE 1:
+// =================================================
+@mixin reset-list { list-style: none; margin: 0; padding: 0; }
+
+.siderbar ul { @include reset-list; }
+
+
+
+
+// EXAMPLE 2: SOLUTION FOR VENDOR PREFIXES
+// =================================================
+// sidenote: http://caniuse.com/
+// Params with reasonable defaults
+
+$light-blue: #7db9e8;
+$dark-blue: #1E5799;
+
+@mixin grad($top-colour: $light-blue, $bottom-color: $dark-blue) {
+  background: $top-colour; /* Old browsers */
+  background: -moz-linear-gradient(top,  $top-colour 0%, $dark-blue 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top-colour), color-stop(100%,$dark-blue)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $top-colour 0%, $dark-blue 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $top-colour 0%, $dark-blue 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $top-colour 0%, $dark-blue 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $top-colour 0%, $dark-blue 100%); /* W3C */
+}
+
+.navbar { @include grad; }
+
+
+// second solution: taken from Bourbon
+@mixin prefixer ($property, $value,
+                 $webkit: true,
+                    $moz: true,
+                     $ms: false,
+                      $o: false,
+                   $spec: true) {
+  @if $webkit { -webkit-#{$property}: $value; }
+  @if $moz    {    -moz-#{$property}: $value; }
+  @if $ms     {     -ms-#{$property}: $value; }
+  @if $o      {      -o-#{$property}: $value; }
+  @if $spec   {         #{$property}: $value; }
+}
+
+
+
+
+
+// EXAMPLE 3: BUTTONS
+// =================================================
+// Ref: http://thesassway.com/intermediate/a-standard-module-definition-for-sass
+
+// COLOR BUTTON MIXIN
+@mixin color-button($text-color, $bg-color) {
+  color: $text-color;
+  border: 1px solid mix(black, $bg-color);
+  @include background-image(
+    linear-gradient(
+      lighten($bg-color, 5%),
+      darken($bg-color, 5%)
+    )
+  );
+}
+// BUTTON MIXIN
+@mixin button($text-color, $bg-color) {
+  font: 12px bold sans-serif;
+  padding: 3px 8px;
+  @include color-button($text-color, $bg-color));
+  &:hover, &:focus { @include color-button($text-color, lighten($bg-color, 10%)); }
+  &:active { background: darken($bg-color, 5%); }
+}
+
+
+@mixin buttons {
+  form input.btn, form .actions input[type=submit], a.btn, button {
+    @include button(black, silver);
+    &.blue  { @include button(white, blue); }
+    &.red   { @include button(white, red); }
+    &.green { @include button(white, green); }
+  }
+}
+
+form { @include buttons; }
+
+
+
+
+// EXAMPLE 4: LAYOUT (check example 1 in 07-grids-and-responsive.scss)
+
+

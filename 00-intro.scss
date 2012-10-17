@@ -1,0 +1,57 @@
+// SMARTER CSS WITH SASS
+
+// This talk will cover:
+// =================================================
+// * Basics of Sass
+// * Using Sass with Compass and Bourbon
+// * Using Sass for grids and responsive layouts
+
+
+// What this talk will not cover:
+// =================================================
+// * Installation and Running of Sass
+// * Comparison to other preprocessors such as Less or Stylus
+
+
+// CSS Cons:
+// =================================================
+// * Lack of essential features (variables, functions...)
+// * Using @import in order to use multiple css files requires additional HTTP requests
+// * Not DRY
+// * Hard to maintain
+
+
+// What is Sass?
+// =================================================
+// Syntactically awesome style sheets
+// Sass is an extension of CSS which adds additonal functionality such as nested rules, variables, functions, mixins, and more.
+// Sass generates well-formatted CSS and makes stylesheets easier to organise and maintain.
+// Sass is written in Ruby, and distributed via the Ruby package manager, RubyGems. 
+
+
+// Benefits of Using Sass:
+// =================================================
+// * Improves development workflow
+// * DRY Principle
+// * Nesting
+// * Variables
+// * Operations
+// * Mixins
+// * Control Logic
+// * File Organisation
+// * Error Debugging
+
+// Syntax!
+
+
+// ERROR EXAMPLE
+// =================================================
+Sass::SyntaxError in Devise/sessions#new
+Showing /app/views/layouts/devise/sessions.haml where line #6 raised:
+
+Invalid CSS after "...), margin-right": expected ";", was ": $gridGutterWi..."
+  (in /app/assets/stylesheets/screen.scss)
+
+// Application Trace
+app/assets/stylesheets/screen.scss:18
+app/assets/stylesheets/application.scss:6
