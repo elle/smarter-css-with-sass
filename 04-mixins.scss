@@ -1,4 +1,5 @@
 // MIXINS
+
 // Mixins enable us to create reusable snniptes of style rules. They do not return a variable value but output CSS.
 // Mixins are reusable sets of properties or rules that you include, or "mix," into other rules, by using the @include keyword
 // They are ideal for fixing the CSS3 vendor prefixes dilemma.
@@ -17,7 +18,7 @@
 
 // EXAMPLE 2: SOLUTION FOR VENDOR PREFIXES
 // =================================================
-// sidenote: http://caniuse.com/
+// Sidenote: http://caniuse.com/
 // Params with reasonable defaults
 
 $light-blue: #7db9e8;
@@ -36,7 +37,7 @@ $dark-blue: #1E5799;
 .navbar { @include grad; }
 
 
-// second solution: taken from Bourbon
+// Second solution: taken from Bourbon
 @mixin prefixer ($property, $value,
                  $webkit: true,
                     $moz: true,
