@@ -72,8 +72,7 @@ Presentations:
 
 
 
-Further Reading
-Semantic id/classes vs. Object Oriented CSS for scalable stylesheets
+Further Reading: Semantic id/classes vs. Object Oriented CSS for scalable stylesheets
 ----------------------------------------------------------------
 - Andy Hume, 2012, CSS for Grown Ups: Maturing Best Practices,
   http://schedule.sxsw.com/2012/events/event_IAP9410
